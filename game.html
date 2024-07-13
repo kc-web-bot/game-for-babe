@@ -98,6 +98,24 @@
         .quest-popup button:hover {
             background: #FF69B4; /* Hot pink */
         }
+        .instructions {
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #fff;
+            padding: 20px;
+            border: 2px solid #FFC0CB; /* Pale pink */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 10;
+            max-width: 80%;
+            text-align: center;
+        }
+        .instructions p {
+            margin: 0;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -106,9 +124,13 @@
         <p>"So it's not gonna be easy. It's going to be really hard; we're gonna have to work at this every day, but I want to do that because I want you. I want all of you, forever, every day. You and me ... every day. - The Notebook"</p>
     </div>
     <div class="quest-popup" id="questPopup">
-        <p>Accept quest from Kesang?</p>
-        <button id="acceptQuest">Yes</button>
-        <button id="declineQuest">No</button>
+        <p>Accept quest from Kesang? 🤔</p>
+        <button id="acceptQuest">Yes 💖</button>
+        <button id="declineQuest">No 💔</button>
+    </div>
+    <div class="instructions" id="instructions">
+        <p>Collect 10 hearts by swiping and accept love! 💌✨</p>
+        <p>Swipe left or right to move your avatar and catch the hearts! 🌟❤️</p>
     </div>
     <audio id="bgMusic" loop>
         <source src="https://www.soundjay.com/button/sounds/button-16.mp3" type="audio/mpeg"> <!-- Cute Happy Music -->
@@ -157,12 +179,13 @@
         // Handle quest acceptance
         document.getElementById('acceptQuest').addEventListener('click', () => {
             document.getElementById('questPopup').style.display = 'none';
+            document.getElementById('instructions').style.display = 'block'; // Show instructions
             document.getElementById('bgMusic').play(); // Play background music
         });
 
         // Handle quest decline
         document.getElementById('declineQuest').addEventListener('click', () => {
-            document.getElementById('questPopup').innerHTML = '<p>Maybe next time!</p>';
+            document.getElementById('questPopup').innerHTML = '<p>Maybe next time! 😊</p>';
             setTimeout(() => {
                 document.getElementById('questPopup').style.display = 'none';
             }, 2000);
