@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collect the Hearts</title>
+    <style>
+        body {
+            background-color: #FFFFE0; /* Light pale yellow */
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .avatar {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            background: url('https://example.com/cute-avatar.png') no-repeat center center;
+            background-size: cover;
+            transform: translateX(-50%);
+        }
+        .heart {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background: #FFC0CB; /* Pale pink */
+            transform: rotate(-45deg);
+            animation: fall 4s ease-in infinite;
+        }
+        .heart::before, .heart::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #FFC0CB; /* Pale pink */
+            position: absolute;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes fall {
+            0% {
+                transform: rotate(-45deg) translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: rotate(-45deg) translate(0, 100vh);
+                opacity: 0;
+            }
+        }
+        .message {
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #fff;
+            padding: 20px;
+            border: 2px solid #FFC0CB; /* Pale pink */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 10;
+            max-width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div class="avatar" id="avatar"></div>
+    <div class="message" id="message">
+        <p>"So it's not gonna be easy. It's going to be really hard; we're gonna have to work at this every day, but I want to do that because I want you. I want all of you, forever, every day. You and me ... every day. - The Notebook"</p>
+    </div>
+    <script>
+        let heartCount = 0;
+        const heartLimit = 50;
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.animationDuration = `${Math.random() * 2 + 3}s`;
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+
+            heart.addEventListener('click', () => {
+                heart.remove();
+                heartCount++;
+                if (heartCount >= heartLimit) {
+                    document.getElementById('message').style.display = 'block';
+                }
+            });
+        }
+
+        setInterval(createHeart, 300);
+
+        // Move avatar with touch/mouse events
+        document.addEventListener('mousemove', (event) => {
+            const avatar = document.getElementById('avatar');
+            avatar.style.left = `${event.clientX - 25}px`; // 25 is half of avatar's width
+        });
+
+        document.addEventListener('touchmove', (event) => {
+            const avatar = document.getElementById('avatar');
+            avatar.style.left = `${event.touches[0].clientX - 25}px`; // 25 is half of avatar's width
+        });
+    </script>
+</body>
+</html>
