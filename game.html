@@ -13,8 +13,9 @@
             padding: 0;
             height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
         .avatar {
             position: absolute;
@@ -73,6 +74,30 @@
             z-index: 10;
             max-width: 80%;
         }
+        .quest-popup {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            border: 2px solid #FFC0CB; /* Pale pink */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        .quest-popup button {
+            margin: 5px;
+            padding: 10px 15px;
+            background: #FFC0CB; /* Pale pink */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        .quest-popup button:hover {
+            background: #FF69B4; /* Hot pink */
+        }
     </style>
 </head>
 <body>
@@ -80,9 +105,18 @@
     <div class="message" id="message">
         <p>"So it's not gonna be easy. It's going to be really hard; we're gonna have to work at this every day, but I want to do that because I want you. I want all of you, forever, every day. You and me ... every day. - The Notebook"</p>
     </div>
+    <div class="quest-popup" id="questPopup">
+        <p>Accept Quest?</p>
+        <button id="acceptQuest">Yes</button>
+        <button id="declineQuest">No</button>
+    </div>
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundjay.com/button/sounds/button-16.mp3" type="audio/mpeg"> <!-- Cute Happy Music -->
+        Your browser does not support the audio element.
+    </audio>
     <script>
         let heartCount = 0;
-        const heartLimit = 50;
+        const heartLimit = 10; // Change to 10 hearts
 
         function createHeart() {
             const heart = document.createElement('div');
@@ -115,6 +149,23 @@
         document.addEventListener('touchmove', (event) => {
             const avatar = document.getElementById('avatar');
             avatar.style.left = `${event.touches[0].clientX - 30}px`; // 30 is half of avatar's width
+        });
+
+        // Show the quest popup
+        document.getElementById('questPopup').style.display = 'block';
+
+        // Handle quest acceptance
+        document.getElementById('acceptQuest').addEventListener('click', () => {
+            document.getElementById('questPopup').style.display = 'none';
+            document.getElementById('bgMusic').play(); // Play background music
+        });
+
+        // Handle quest decline
+        document.getElementById('declineQuest').addEventListener('click', () => {
+            document.getElementById('questPopup').innerHTML = '<p>Maybe next time!</p>';
+            setTimeout(() => {
+                document.getElementById('questPopup').style.display = 'none';
+            }, 2000);
         });
     </script>
 </body>
