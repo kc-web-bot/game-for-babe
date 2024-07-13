@@ -73,6 +73,10 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             z-index: 10;
             max-width: 80%;
+            color: red;
+            font-family: 'Dancing Script', cursive; /* Romantic Font */
+            font-size: 20px;
+            text-align: center;
         }
         .quest-popup {
             position: absolute;
@@ -116,12 +120,49 @@
             margin: 0;
             font-size: 16px;
         }
+        .instructions button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #FFC0CB; /* Pale pink */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        .instructions button:hover {
+            background: #FF69B4; /* Hot pink */
+        }
+        .heart-animation {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            z-index: 20;
+        }
+        .heart-animation .heart {
+            width: 100px;
+            height: 100px;
+            animation: heartBloom 1.5s ease-out;
+        }
+        @keyframes heartBloom {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet"> <!-- Romantic Font -->
 </head>
 <body>
     <div class="avatar" id="avatar"></div>
     <div class="message" id="message">
-        <p>"So it's not gonna be easy. It's going to be really hard; we're gonna have to work at this every day, but I want to do that because I want you. I want all of you, forever, every day. You and me ... every day. - The Notebook"</p>
+        <p>❤️💌 "So it's not gonna be easy. It's going to be really hard; we're gonna have to work at this every day, but I want to do that because I want you. I want all of you, forever, every day. You and me ... every day. - The Notebook 💌❤️"</p>
     </div>
     <div class="quest-popup" id="questPopup">
         <p>Accept quest from Kesang? 🤔</p>
@@ -129,8 +170,12 @@
         <button id="declineQuest">No 💔</button>
     </div>
     <div class="instructions" id="instructions">
-        <p>Collect 10 hearts by swiping and accept love! 💌✨</p>
-        <p>Swipe left or right to move your avatar and catch the hearts! 🌟❤️</p>
+        <p>Collect 10 hearts by clicking them and accept love! 💌✨</p>
+        <p>Click the hearts as they fall from the sky to collect them! 🌟❤️</p>
+        <button id="finishedReading">Finished Reading 📜</button>
+    </div>
+    <div class="heart-animation" id="heartAnimation">
+        ❤️
     </div>
     <audio id="bgMusic" loop>
         <source src="https://www.soundjay.com/button/sounds/button-16.mp3" type="audio/mpeg"> <!-- Cute Happy Music -->
@@ -138,7 +183,7 @@
     </audio>
     <script>
         let heartCount = 0;
-        const heartLimit = 10; // Change to 10 hearts
+        const heartLimit = 10; // 10 hearts
 
         function createHeart() {
             const heart = document.createElement('div');
@@ -156,6 +201,10 @@
                 heartCount++;
                 if (heartCount >= heartLimit) {
                     document.getElementById('message').style.display = 'block';
+                    document.getElementById('heartAnimation').style.display = 'block'; // Show heart animation
+                    setTimeout(() => {
+                        document.getElementById('heartAnimation').style.display = 'none'; // Hide heart animation after showing
+                    }, 1500);
                 }
             });
         }
@@ -190,7 +239,8 @@
                 document.getElementById('questPopup').style.display = 'none';
             }, 2000);
         });
-    </script>
-</body>
-</html>
+
+        // Handle finished reading button
+        document
+
 
