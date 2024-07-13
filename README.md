@@ -35,4 +35,14 @@ The game features:
 The game uses HTML, CSS, and JavaScript to create a simple yet interactive experience:
 - **HTML:** Provides the structure of the game.
 - **CSS:** Styles the game’s appearance and animations.
-- **Ja
+- **JavaScript:** Handles game logic, including creating falling hearts and detecting clicks.
+
+## 📦 Installation
+
+If you want to run this game locally or make modifications, follow these steps:
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/kc-web-bot/pink-heart.git
+
