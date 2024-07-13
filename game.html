@@ -20,15 +20,15 @@
             position: absolute;
             bottom: 20px;
             left: 50%;
-            width: 50px;
-            height: 50px;
-            background: url('https://example.com/cute-avatar.png') no-repeat center center;
+            width: 60px;
+            height: 60px;
+            background: url('https://www.clipartkey.com/mpngs/m/29-297849_cute-avatar-png-transparent-png.png') no-repeat center center; /* Cute Avatar */
             background-size: cover;
             transform: translateX(-50%);
         }
         .heart {
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
             position: absolute;
             background: #FFC0CB; /* Pale pink */
             transform: rotate(-45deg);
@@ -36,18 +36,18 @@
         }
         .heart::before, .heart::after {
             content: '';
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background: #FFC0CB; /* Pale pink */
             position: absolute;
         }
         .heart::before {
-            top: -10px;
+            top: -15px;
             left: 0;
         }
         .heart::after {
-            left: 10px;
+            left: 15px;
             top: 0;
         }
         @keyframes fall {
@@ -109,13 +109,14 @@
         // Move avatar with touch/mouse events
         document.addEventListener('mousemove', (event) => {
             const avatar = document.getElementById('avatar');
-            avatar.style.left = `${event.clientX - 25}px`; // 25 is half of avatar's width
+            avatar.style.left = `${event.clientX - 30}px`; // 30 is half of avatar's width
         });
 
         document.addEventListener('touchmove', (event) => {
             const avatar = document.getElementById('avatar');
-            avatar.style.left = `${event.touches[0].clientX - 25}px`; // 25 is half of avatar's width
+            avatar.style.left = `${event.touches[0].clientX - 30}px`; // 30 is half of avatar's width
         });
     </script>
 </body>
 </html>
+
